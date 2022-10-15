@@ -1,0 +1,192 @@
+openapi: 3.0.0
+info:
+  title: 'Impresiones APIS'
+  description: 'Implementacion de las APIS de Impresiones'
+  contact:
+    email: admin@admin.com
+  version: 1.0.0
+paths:
+  '/api/v1/bocetos/{boceto}':
+    get:
+      tags:
+        - Bocetos
+      summary: 'Muestra un boceto'
+      description: ' Trae un boceto '
+      operationId: show
+      parameters:
+        -
+          name: boceto
+          in: path
+          description: 'Id del boceto que se quiere ver'
+          required: true
+          explode: false
+          schema:
+            type: integer
+      responses:
+        200:
+          description: 'successful operation'
+        400:
+          description: 'Invalid status value'
+    put:
+      tags:
+        - Bocetos
+      summary: 'Actualiza un boceto'
+      description: ' Actualiza un boceto '
+      operationId: update
+      parameters:
+        -
+          name: boceto
+          in: path
+          description: 'Id del boceto al cual que se quieren modificar los datos'
+          required: true
+          explode: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                nombre:
+                  description: 'nombre del boceto'
+                  type: string
+                  default: ''
+                html:
+                  description: 'html del boceto'
+                  type: string
+                  default: ''
+                css:
+                  description: 'css del boceto'
+                  type: string
+                  default: ''
+                styles:
+                  description: 'styles del boceto'
+                  type: string
+                  default: ''
+                components:
+                  description: 'components del boceto'
+                  type: string
+                  default: ''
+                assets:
+                  description: 'assets del boceto'
+                  type: string
+                  default: ''
+              type: object
+      responses:
+        201:
+          description: 'successful operation'
+        400:
+          description: 'Invalid status value'
+    delete:
+      tags:
+        - Bocetos
+      summary: 'Elimina un boceto'
+      description: ' Elimina un boceto '
+      operationId: show
+      parameters:
+        -
+          name: boceto
+          in: path
+          description: 'Id del boceto que se quiere eliminar'
+          required: true
+          explode: false
+          schema:
+            type: integer
+      responses:
+        200:
+          description: 'successful operation'
+        400:
+          description: 'Invalid status value'
+  /api/v1/bocetos/getAll:
+    get:
+      tags:
+        - Bocetos
+      summary: 'Listado de Bocetos para select'
+      description: ' Lista de Bocetos'
+      operationId: getAll
+      responses:
+        200:
+          description: 'successful operation'
+  /api/v1/bocetos:
+    get:
+      tags:
+        - Bocetos
+      summary: 'Listado de Bocetos, con paginado'
+      description: ' Lista de Bocetos '
+      operationId: index
+      parameters:
+        -
+          name: page
+          in: query
+          description: 'N° de página'
+          required: false
+          explode: true
+          schema:
+            type: integer
+        -
+          name: per_page
+          in: query
+          description: 'bocetos por pagina'
+          required: false
+          explode: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: 'Operación exitosa'
+        404:
+          description: 'Id de boceto no encontrado'
+    post:
+      tags:
+        - Bocetos
+      summary: 'Crea un boceto'
+      description: ' Crea un boceto '
+      operationId: store
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                nombre:
+                  description: 'nombre del boceto'
+                  type: string
+                  default: ''
+                html:
+                  description: 'html del boceto'
+                  type: string
+                  default: ''
+                css:
+                  description: 'css del boceto'
+                  type: string
+                  default: ''
+                styles:
+                  description: 'styles del boceto'
+                  type: string
+                  default: ''
+                components:
+                  description: 'components del boceto'
+                  type: string
+                  default: ''
+                assets:
+                  description: 'assets del boceto'
+                  type: string
+                  default: ''
+                bocetoCreador:
+                  description: 'id del usuario creador del boceto'
+                  type: string
+                  default: ''
+              type: object
+      responses:
+        201:
+          description: 'successful operation'
+        400:
+          description: 'Invalid status value'
+components:
+  securitySchemes:
+    bearer:
+      type: http
+      description: 'Authorization token obtained from logging in.'
+      name: TOKEN
+      in: header
+      scheme: bearer

@@ -1,0 +1,13 @@
+{
+    "name": "Organismos",
+    "alias": "organismos",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "Modules\\Organismos\\Providers\\OrganismosServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

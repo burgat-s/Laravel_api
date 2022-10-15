@@ -1,0 +1,8 @@
+{
+    "Auth": true,
+    "Bocetos": true,
+    "Zonas": true,
+    "Municipalidades": true,
+    "Organismos": true,
+    "Comprobantes": true
+}
